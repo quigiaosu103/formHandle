@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="form" id="form-1">
+        <h3 class="heading">Thành viên đăng ký</h3>
+        <span class="title">Cùng nhau học lập trình nhé!</span>
+
+        <div class="group__form">
+            <label for="fullname" class="form__label">Họ và tên</label>
+            <input type="text" class="form__input" id="full-name" placeholder="Eg. Nguyễn Văn A">
+            <span class="form__message"></span>
+        </div>
+
+        <div class="group__form">
+            <label for="fullname" class="form__label">Email</label>
+            <input type="text" class="form__input" id="email" placeholder="Eg.email@domain.com">
+            <span class="form__message"></span>
+        </div>
+
+        <div class="group__form">
+            <label for="fullname" class="form__label">Mật khẩu</label>
+            <input type="password" class="form__input" id="password"  placeholder="Mật khẩu">
+            <span class="form__message"></span>
+        </div>
+
+        <div class="group__form">
+            <label for="fullname" class="form__label">Nhập lại mật khẩu</label>
+            <input type="password" class="form__input" id="password-confirm" placeholder="Nhập lại mật khẩu">
+            <span class="form__message"></span>
+        </div>
+
+        <button class="form-submit" type="submit">Đăng ký</button>
+    </div>
+
+    <script src="./index.js"></script>
+    <script>
+        Validator({
+            form: "#form-1",
+            errorSelector: '.form__message',
+            rules: [
+                Validator.isRequired("#full-name"),
+                Validator.isRequired("#email"),
+                Validator.isEmail("#email"),
+                Validator.isRequired("#password"),
+                Validator.isRequiredPassworld('#password', 8),
+                Validator.isRequired("#password-confirm"),
+                Validator.isConfirmed('#password-confirm', function(){
+                    return document.querySelector('#form-1 #password').value;
+                }),
+            ]
+        })
+    </script>
+</body>
+</html>
